@@ -12,6 +12,14 @@ app.set('view enginge', 'hbs');
 
 app.use(express.static(__dirname+ '/public'));
 
+app.use((request,response) => {
+    //error page renders if the get URL doesnt match any of the above
+    response.render('public/error.hbs', {
+        title: 'Oh no!',
+        header: 'This page is BROKEN',
+    });
+});
+
 hbs.registerHelper('getCurrentYear',()=>{
     return new Date().getFullYear();
 });
